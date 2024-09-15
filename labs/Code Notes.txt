@@ -1,0 +1,58 @@
+Week 2 - Getting Started and Setup
+vite@latest .
+y
+react
+javascript
+
+npm install
+
+npm run dev (if it doesn't work, make sure to npm install first)
+
+ctrl c - cancel run
+
+
+To opens web automatically at localhost 3000, 
+In package.json, change:
+ "scripts": {
+    "dev": "vite --open --port=3000",
+
+create heading with text
+import { createElement } from "react";
+Inside function
+  const heading = createElement('h1', { id: "myheading"}, "React is awesome!")
+  return heading
+
+
+Can only return a single root element in a function, ex. one div, one h1, one p.
+Common practice suggests to not add elements that don't belong to a page
+In this case, use fragement in react. Ex:
+import { Fragment } from "react";
+  return <Fragment id="somethin"><h1>I love React</h1><p>Web dev bla bla..</p></Fragment>
+
+Add parenthesis and opening/closing brackets  to stay organized
+(
+	<>
+		content
+	</>
+)
+
+Use className instead of class
+
+Use curly braces to use const in function {const} can also do math {4*5}
+Use backticks to use string and const. {`My heading${heading}`}
+
+
+Shema git repository
+run: npx degit yveshema/COMP3170-fall-2024#lab1
+
+or 
+
+install degit: 
+npm install -g degit
+get the project's template:
+degit yveshema/COMP3170-fall-2024#lab1
+start coding ..
+
+
+To start git repository
+git init
