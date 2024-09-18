@@ -1,10 +1,14 @@
-function Greeting(props) {
-    console.log(props)
+function Greeting({ person }) {
+    console.log(person);
+
+    // const {name, occupation} = props.person;
+    const {name, occupation} = person;
+
     return (
         <>
             <p>Hello there!</p>
-            <p>My name is {props.name}</p>
-            <p>I work as a {props.occupation}</p>
+            {/* <p>My name is {props.person.name}, I am a {props.person.occupation}</p> */}
+            <p>My name is {name}, I am a {occupation}</p>
         </>
     );
 }
