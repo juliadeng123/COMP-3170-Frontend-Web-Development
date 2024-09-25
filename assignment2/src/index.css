@@ -1,0 +1,34 @@
+h1 {
+    font-size: xx-large;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.artist {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #faebd7;
+    padding-left: 20px;
+    border: 5px solid #4c7da8;
+}
+
+.artistList {
+    list-style-type: none;
+}
+
+.artistDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+}
+
+footer {
+    padding: 30px;
+    text-align: center;
+}
