@@ -3,9 +3,10 @@
   max-width: 60%;
   margin: auto;
 }
-
-.App > h1 {
+.apph1 {
   text-align: center;
+  font-size: xx-large;
+  margin-bottom: 0.2em;
 }
 
 .feed {
@@ -17,7 +18,8 @@
 .story {
   position: relative;
   padding: 1em;
-  box-shadow: 0 1px 2px #aeaeae;
+  box-shadow: 0 1px 2px #4c7da8;
+  background-color: #faebd7;
 }
 
 .story span.delete {
@@ -29,7 +31,7 @@
   line-height: 0.8;
   top: 0;
   right: 0;
-  background: red;
+  background: #4c7da8;
   color: #fff;
   cursor: pointer;
 }
