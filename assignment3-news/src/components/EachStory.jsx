@@ -42,8 +42,6 @@ export default function Story({story}){
     }
 
     return (
-        <div className="container">
             <RemoveStory/>
-        </div>
     );
 }
