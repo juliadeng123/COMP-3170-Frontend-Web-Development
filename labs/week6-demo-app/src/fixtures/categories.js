@@ -1,18 +1,22 @@
 export const categories = [
     {
       id: 0,
-      name: "uncategorized"
+      name: "uncategorized",
+      description:"",
     },
     {
       id: 1,
-      name: "clothing"
+      name: "clothing",
+      description:"",
     },
     {
       id: 2,
-      name: 'footwear'
+      name: 'footwear',
+      description:"",
     },
     {
       id: 3,
-      name: 'hats'
+      name: 'hats',
+      description:"",
     }
 ];

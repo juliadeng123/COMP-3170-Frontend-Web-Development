@@ -1,60 +1,149 @@
 import FooterColumnLinks from "./components/FooterColumnLinks";
+import { nanoid } from 'nanoid'
 import Product from "./components/Product";
+import { useState } from 'react';
 
-const footerLinks = [
-  {
-    title: "Our store",
-    links: ["About us", "Contact us", "Become a partner"],
-  },
-  {
-    title: "Our policies",
-    links: ["Return policies", "Shipping policy", "Terms of service"],
-  },
-  {
-    title: "Our products",
-    links: ["Home page", "Search", "Catalog"],
-  }
-];
+import { initialProducts, footerLinks, initialCategories } from './fixtures'
 
-const PRODUCTS = [
-  {
-    name: "Shoes",
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Asics_Gel-Cumulus_22.jpg",
-    price: 50,
-  },
-  {
-    name: "Men's shirt",
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/0/09/Shirt%2C_men%27s_%28AM_2015.44.1-1%29.jpg",
-    price: 36,
-  },
-  {
-    name: "Men's jeans",
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/d/d2/Jeans_for_men.jpg",
-    price: 45,
-  },
-  {
-    name: "Samsung galaxy",
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/d/da/%D0%92%D0%BD%D1%83%D1%82%D1%80%D1%96%D1%88%D0%BD%D1%96%D0%B9_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD_Samsung_Galaxy_Fold_2.png",
-    price: 1200,
-  },
-  {
-    name: "Chair",
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/2/25/Rey_Chair.png",
-    price: 25,
-  },
-  {
-    name: "Fridge",
-    image_url: "https://upload.wikimedia.org/wikipedia/commons/3/35/Custom_Door_Fridge_2.jpg",
-    price: 600,
-  }
-];
 
 function App() {
+
+  const [products, setProducts] = useState(initialProducts);
   
+  const [editing, setEditing] = useState(false);
+
+  const [categories, setCategories] = useState(initialCategories);
+
+  const [product, setProduct] = useState({
+    name: 'new product',
+    image_url: 'https://placehold.co/600x400?text=New\nProduct',
+    category: 0,
+    price: 0.0,
+    quantity: 1
+  })
+   
+  // JSX
   const footerColumns = footerLinks.map(column => <FooterColumnLinks key={column.title} data={column} />);
 
-  const productList = PRODUCTS.map(product => <Product key={product.name} product={product} />);
-  
+  const productList = initialProducts.map(product => <Product key={product.name} product={product} />);
+
+  // const categoryOptions = initialCategories.map(category => (<option key={category.id} value={category.id}>{category.name}</option>));
+
+
+  function handleCancel(e) {
+    e.preventDefault();
+    setEditing(false);
+  }
+
+  function handleAddProduct(e) {
+    e.preventDefault();
+
+    //update list of products
+    setProducts([...products, product]);
+
+    //dismiss the form
+    setEditing(false);
+    
+    //restore the form state
+    setProduct({
+      name: 'new product',
+      image_url: 'https://placehold.co/600x400?text=New\nProduct',
+      category: 0,
+      price: 0.0,
+      quantity: 1
+    })
+
+  }
+
+
+  //Product Form
+  const productForm = (
+    <form onSubmit={handleAddProduct}>
+      <div className="control-group">
+        <label htmlFor="product-name">Name: </label>
+        <input
+          id="product-name"
+          name="name"
+          type="text"
+          value={product.name}
+          onChange={(e) => setProduct({...product, name:e.target.value})}
+        />
+      </div>
+      <div className="control-group">
+        <label htmlFor="product-image">Image: </label>
+        <input
+          id="product-image"
+          name="image_url"
+          type="url"
+          value={product.image_url}
+          onChange={(e) => setProduct({...product, image_url:e.target.value})}
+        />
+      </div>
+      <div>
+        <label htmlFor="product-category">Category: </label>
+        <select 
+          id="product-category"
+          name="category"
+          value={product.category}
+          onChange={(e) => setProduct({...product, category:e.target.value})}
+        >
+          {categories.map(category => ( <option key={category.id} value={category.id}>{category.name}</option>))}
+          <option value="0">uncategorized</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="product-price">Price: </label>
+        <input
+          id="product-price"
+          name="price"
+          type="number"
+          step="0.01"
+          value={product.price}
+          onChange={(e) => setProduct({...product, price:e.target.value})}
+        />
+      </div>
+      <div>
+        <label htmlFor="product-quantity">Quantity: </label>
+        <input
+          id="product-quantity"
+          name="quantity"
+          type="number"
+          value={product.quantity}
+          onChange={(e) => setProduct({...product, quantity:e.target.value})}
+        />
+      </div>
+
+      <div className="btn-group">
+        <button className="btn-primary">Save</button>
+        <button className="btn-cancel" onClick={handleCancel}>Cancel</button>
+      </div>
+    </form>
+  )
+  //Category Form
+  const categoryForm = (
+    <form>
+      <div className="control-group">
+        <label htmlFor="category-name">Name: </label>
+        <input
+        id="category-name"
+        name="name"
+        type="text"
+        />
+      </div>
+      <div className="control-group">
+        <label htmlFor="category-desc">Description: </label>
+        <input
+        id="category-desc"
+        name="description"
+        type="text"
+        />
+      </div>
+      <div className="btn-group">
+        <button className="btn-primary">Save</button>
+        <button className="btn-cancel" onClick={handleCancel}>Cancel</button>
+      </div>
+    </form>
+  )
   return (
     <div class="app">
       <section id="content">
@@ -80,7 +169,18 @@ function App() {
             </form>
           </div>
           
+          <div>
+            <button className="btn-primary" onClick={() => setEditing('product')}>New Products</button>
+            <button className="btn-secondary" onClick={() => setEditing('category')}>New Category</button>
+          </div>
+          
         </header>
+
+        <div className="add-form">
+         {editing === 'product' && productForm}
+         {editing === 'category' && categoryForm}
+        </div>
+
         <main>
           {productList}
         </main>
