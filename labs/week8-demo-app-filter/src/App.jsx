@@ -6,11 +6,14 @@ import CategoryForm from './components/CategoryForm';
 import CartPreview from './components/CartPreview';
 import CartItem from './components/CartItem';
 import Spinner from './components/Spinner';
+import Navigation from './components/Navigation';
+import CatalogDropDown from './components/CatalogDropDown';
 
 import { MdDelete } from 'react-icons/md';
 
 import { initialProducts, footerLinks, initialCategories } from './fixtures';
 
+import './App.css'
 
 function App() {
   const [products, setProducts] = useState(initialProducts);
@@ -19,9 +22,16 @@ function App() {
 
   const [categories, setCategories] = useState(initialCategories);
 
+  const [filter, setFilter] = useState("0");
+
+  const filteredProducts =  filter === "0"?
+                            products
+                            :
+                            products.filter(product => product.category === filter);
+
   // JSX
   const footerColumns = footerLinks.map(column => <FooterColumnLinks key={column.title} data={column} />);
-  const productList = products.map(product => <Product key={product.name} product={product} addToWishlist={addToWishlist} addToCart={addToCart} />);
+  const productList = filteredProducts.map(product => <Product key={product.name} product={product} addToWishlist={addToWishlist} addToCart={addToCart} />);
 
   function addProduct(product) {
     setProducts([...products, product]);
@@ -115,12 +125,10 @@ function App() {
           </div>
           
           <div>
-            <nav>
-              <button>Home</button>
-              <button>Catalog</button>
-              <button>All products</button>
-              <button>Wishlist</button>
-            </nav>
+            {/* <Navigation categories={categories} /> */}
+            <Navigation>
+              <CatalogDropDown categories={categories} filter={setFilter} />
+            </Navigation>
             <form>
               <input type="search" placeholder="search" />
               <button type="button">Go</button>
