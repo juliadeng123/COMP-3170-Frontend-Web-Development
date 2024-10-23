@@ -4,6 +4,8 @@ y
 react
 javascript
 
+npm create vite@latest . -- --template react
+
 npm install
 
 npm run dev (if it doesn't work, make sure to npm install first)
