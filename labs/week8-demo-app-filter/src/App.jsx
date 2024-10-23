@@ -29,6 +29,10 @@ function App() {
                             :
                             products.filter(product => product.category === filter);
 
+  function getCategory(categoryID) {
+    return categories.find(category => category.id === categoryID);
+  }
+
   // JSX
   const footerColumns = footerLinks.map(column => <FooterColumnLinks key={column.title} data={column} />);
   const productList = filteredProducts.map(product => <Product key={product.name} product={product} addToWishlist={addToWishlist} addToCart={addToCart} />);
@@ -146,6 +150,7 @@ function App() {
         {editing === 'category' && <CategoryForm add={addCategory} toggleEdit={toggleEdit} />}
 
         <main>
+          {filter !== "0" && <h3>Category: {getCategory(filter).name}</h3>}
           <div className="products">{productList}</div>
         </main>
       </section>
