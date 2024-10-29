@@ -63,8 +63,8 @@
 .filterButton {
   text-align: center;
   justify-content: left;
-  background: hsl(61, 100%, 83%);
-  color: #000000;
+  background: #4c7da8;
+  color: #fff;
   cursor: pointer;
   height: 3em;
   padding-right: 20px;
