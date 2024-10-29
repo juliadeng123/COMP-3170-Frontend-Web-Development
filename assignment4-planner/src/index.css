@@ -59,3 +59,22 @@
 .completed {
   text-decoration: line-through;
 }
+
+.filterButton {
+  text-align: center;
+  justify-content: left;
+  background: hsl(61, 100%, 83%);
+  color: #000000;
+  cursor: pointer;
+  height: 3em;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.filterButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2em;
+  padding: 2em;
+}
