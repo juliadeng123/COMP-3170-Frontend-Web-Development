@@ -1,57 +1,57 @@
-import { useEffect } from 'react'
-import './App.css'
+import { useEffect } from 'react';
+import './App.css';
 
-function App( name ) {
+import CustomErrorBoundary from './CustomErrorBoundary';
+import Favorites from './Favorites';
 
-  useEffect(() => {
-    console.log("My effect");
+function App() {
 
-    return () => console.log("unmounting"); //will run on unmount
-  },[]); //will run on mount
-
-  useEffect(() => {
-    //
-  },[name]) //will run on every update of "name"
 
   return (
     <>
-    <h1>Error Handling</h1>
-    <Example a={1n} b={2n}/>
+    
+      <h1>Error Handling</h1>
+
+      <Favorites />
+
+      {/* <CustomErrorBoundary fallback={<>Error in Example</>}>
+        <Example a={1n} b={0n} />
+      </CustomErrorBoundary> */}
+    
     </>
-  )
+  );
 }
 
-function Example( a, b ) {
-  // const name; not intialized with value hence error
+function Example({ a, b}) {
+  
+  a / b; // division by zero will throw an error here
 
-  // try {
-  //   a / b;
-  // } catch(e) {
-  //   console.log(e.message);
-  // }
-  let child
+  let child;
   try {
-    child = <Error />
+    child = <Error />; // will an error be thrown here?
   } catch(e) {
-    console.log(e.message)
-    child = "Safe component"
+    console.log(e.message);
+    child = 'Safe component';
   }
+  
 
   return (
     <>
-    <ErrorBoundary>
-
-    </ErrorBoundary>
-    <p>Example Component</p>
-    <p>Hello {name}</p>
-    {child}
+    
+      <p>Example component</p>
+      <p>Hello {name}</p>
+    <CustomErrorBoundary fallback={<>Something went wrong in Example</>}>
+      {child}
+    </CustomErrorBoundary>
+    
     </>
-  )
+  );
 }
 
-function Error(){
+function Error() {
   throw new Error('some error');
-  return 'Error'
+
+  return 'Error component';
 }
 
-export default App
+export default App;

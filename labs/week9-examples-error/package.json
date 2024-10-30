@@ -1,5 +1,5 @@
 {
-  "name": "week9-examples-error-styles-assets",
+  "name": "week9",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-error-boundary": "^4.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

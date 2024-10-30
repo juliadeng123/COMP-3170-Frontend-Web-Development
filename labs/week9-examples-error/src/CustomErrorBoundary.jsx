@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class CustomErrorBoundary extends React.Component {
 
@@ -11,15 +11,21 @@ class CustomErrorBoundary extends React.Component {
     static getDerivedStateFromError() {
         // will be called when an error is thrown
         // from the wrapped component and descendants
-        return {hasError: true };
+        return { hasError: true };
+    }
+
+    componentDidCatch(error, errorInfo){
+        // logging service proxy
+        console.log(error.message);
     }
 
     render () {
         if (this.state.hasError) {
-            return <p>Something went wrong!</p>    
+            return this.props.fallback;
         }
 
         return this.props.children;
     }
 }
 
+export default CustomErrorBoundary;
