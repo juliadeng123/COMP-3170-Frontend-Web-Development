@@ -1,9 +1,10 @@
 import { useState, useRef } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import './App.css'
+import './App.css';
 
-import styles from './example.module.css'
+import styles from './example.module.css';
+
 
 const forbidden = [
     'violence',
@@ -55,7 +56,7 @@ export default function Favorites() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form className={styles['my-form']} onSubmit={handleSubmit}>
                 <input type="text" name="favorite" />
                 <button>Submit</button>
             </form>
