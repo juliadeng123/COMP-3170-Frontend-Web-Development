@@ -1,7 +1,16 @@
+import { Outlet, Link, NavLink } from "react-router-dom";
+
 export default function Home() {
     return (
         <>
-        <h1>Home Page</h1>
+        <>
+        <Outlet />
+        <nav style= {{display: "flex", gap: "1em"}}>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/About">About Us</NavLink>
+            <NavLink to="/Contact" state={{ course: "Javascript" }}>Contact Us</NavLink>
+        </nav>
+        </>
         </>
     );
 }
