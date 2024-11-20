@@ -66,3 +66,67 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+form, .topFilter, .byLocation {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+label {
+  background-color: #faebd7;
+  padding: 1em;
+}
+
+.topCheckbox {
+  display: flex;
+  gap: 1em;
+}
+
+.checkBox:checked {
+  accent-color: #4c7da8;
+}
+
+.countries-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+}
+
+.country {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #4c7da8;
+  align-items: center;
+  width: 30%;
+}
+
+.countryHeading {
+  display: flex;
+  align-items: left;
+  gap: 5%;
+  background-color: #faebd7;
+  width: 100%;
+  border-bottom: 1px solid #4c7da8;
+}
+
+@media only screen and (max-width: 1024px) {
+  .country {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .country {
+    width: 50%;
+  }
+}
