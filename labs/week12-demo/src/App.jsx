@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom'
+
 import Sidebar from './components/Sidebar';
+
 import './App.css';
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
   }, []);
   
   return (
-      <div className='app'>
+      <div className='App'>
         <h1>
           <Link to="/">Blog Portal</Link>
         </h1>
