@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { nanoid } from 'nanoid';
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
-export default function Post({ post, addComment }) {
+import { AppContext } from "../appContext";
+
+export default function Post({ post}) {
     const [editing, setEditing] = useState(false);
+    const { addComment } = useContext(AppContext);
 
     function onSubmit(e) {
         e.preventDefault();
@@ -18,7 +21,7 @@ export default function Post({ post, addComment }) {
         };
 
         addComment(newComment);
-        
+
         setEditing(false);
     }
     return (

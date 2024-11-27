@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
-import PostList from './components/PostList'
+import PostList from './components/PostList';
 
-import './App.css'
+import { AppContext } from './appContext';
+
+import './App.css';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -47,6 +49,10 @@ function App() {
   },[]);
   return (
     <div className='App'>
+      <AppContext.Provider value={{
+        posts,
+        addComment
+      }} />
       <PostList posts={posts} addComment={addComment} />
     </div>
   );

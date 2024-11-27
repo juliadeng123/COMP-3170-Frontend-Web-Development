@@ -1,10 +1,16 @@
-import Post from "./Post";
+import { useContext } from "react";
 
-export default function PostList({ posts, addComment }) {
+import Post from "./Post";
+import { AppContext } from "../appContext";
+
+export default function PostList() {
+
+    const {posts, addComment} = useContext(AppContext);
+
     return(
         <div className="posts">
             <h1>My Blog</h1>
-            {posts.map(post => <Post key={post.id} post={post} addComment={addComment}/>)}
+            {posts.map(post => <Post key={post.id} post={post}/>)}
         </div>
     )
 }
